@@ -160,7 +160,7 @@ void System::processSelection(int selection)
             }
             if (maxCapacity == -1)
             {
-                cout << "No event found with that ID.\n";
+                cout << "No event found with that ID." << endl;
                 break;
             }
 
@@ -170,11 +170,11 @@ void System::processSelection(int selection)
             cin >> date;
 
             if (registrations.addRegistration(Registration(studentID, eventID, date, true), maxCapacity))
-                cout << "Student registered.\n";
+                cout << "Student registered." << endl;
             else if (registrations.isRegistered(studentID, eventID))
-                cout << "Student is already registered for this event.\n";
+                cout << "Student is already registered for this event." << endl;
             else
-                cout << "This event is full.\n";
+                cout << "This event is full." << endl;
             break;
         }
         case 7: {
@@ -186,9 +186,9 @@ void System::processSelection(int selection)
             cout << endl;
 
             if (registrations.cancelRegistration(studentID, eventID))
-                cout << "Registration cancelled.\n";
+                cout << "Registration cancelled." << endl;
             else
-                cout << "No active registration found.\n";
+                cout << "No active registration found." << endl;
             break;
         }
         case 8: {
@@ -199,9 +199,9 @@ void System::processSelection(int selection)
 
             vector<int> eventIDs = registrations.getEventIDsForStudent(studentID);
             if (eventIDs.empty())
-                cout << "No registrations found.\n";
+                cout << "No registrations found." << endl;
             for (int id : eventIDs)
-                cout << "  - Event " << id << "\n";
+                cout << "  - Event " << id << endl;
             break;
         }
         case 9: {
@@ -212,27 +212,27 @@ void System::processSelection(int selection)
 
             vector<int> studentIDs = registrations.getStudentIDsForEvent(eventID);
             if (studentIDs.empty())
-                cout << "No students registered.\n";
+                cout << "No students registered." << endl;
             for (int id : studentIDs)
-                cout << "  - Student " << id << "\n";
+                cout << "  - Student " << id << endl;
             break;
         }
         case 10: {
             break;
         }
         case 11: {
-            cout << "1). Available Events\n";
-            cout << "2). Full Events\n";
-            cout << "3). Registration Counts\n";
-            cout << "4). Most Popular Event\n";
+            cout << "1). Available Events" << endl;
+            cout << "2). Full Events" << endl;
+            cout << "3). Registration Counts" << endl;
+            cout << "4). Most Popular Event" << endl;
 
-            cout << "\nReport selection: ";
+            cout << endl << "Enter selection: ";
 
             int reportChoice;
             if (!(cin >> reportChoice)) {
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
-                cout << "Invalid report selection.\n";
+                cerr << "Error: Invalid report selection." << endl;
                 break;
             }
 
@@ -256,7 +256,7 @@ void System::processSelection(int selection)
                     break;
 
                 default:
-                    cout << "Invalid report selection.\n";
+                    cerr << "Error: Invalid report selection." << endl;
             }
             break;
         }

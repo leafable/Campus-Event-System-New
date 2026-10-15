@@ -10,14 +10,14 @@
 class System
 {
 private:
-    int getSelection();
-    void processSelection(int selection);
     StudentManagement students;
     OrganizerManagement organizers;
     EventSystem events;
     RegistrationManager registrations;
     ReportManager reports;
     FileManager filemanager = FileManager(students, events, organizers, registrations);
+    int getSelection();
+    void processSelection(int selection);
 public:
     System();
     ~System();
