@@ -5,16 +5,21 @@
 #include "StudentManagement.h"
 #include "RegistrationManager.h"
 #include "ReportManager.h"
+#include <limits>
 
 class System
 {
-public:
-    System();
-    ~System();
+private:
     StudentManagement students;
     OrganizerManagement organizers;
     EventSystem events;
     RegistrationManager registrations;
     ReportManager reports;
     FileManager filemanager = FileManager(students, events, organizers, registrations);
+    int getSelection();
+    void processSelection(int selection);
+public:
+    System();
+    ~System();
+    void runSystem();
 };
