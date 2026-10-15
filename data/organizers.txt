@@ -1,0 +1,13 @@
+organization_id,organization_name,email,academic_discipline
+01,Computer Science Club,csclub@campus.edu,Computer Science
+02,Business Leaders Association,businessleaders@campus.edu,Business
+03,Biology Society,biologysociety@campus.edu,Biology
+04,Mathematics Association,mathassoc@campus.edu,Mathematics
+05,Psychology Network,psychnetwork@campus.edu,Psychology
+06,Engineering Guild,engineeringguild@campus.edu,Engineering
+07,Economics Forum,econforum@campus.edu,Economics
+08,Physics Club,physicsclub@campus.edu,Physics
+09,Chemistry Alliance,chemalliance@campus.edu,Chemistry
+10,English Literature Society,englishlit@campus.edu,English
+11,Data Science Association,datascience@campus.edu,Data Science
+12,Environmental Studies Group,envstudies@campus.edu,Environmental Studies

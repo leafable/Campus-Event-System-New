@@ -1,0 +1,40 @@
+1,Academic Seminar 1,Academic Event,2027-03-31,11:00,Room 101,30,Computer Science Club,2,Biology,Prof. Chen
+2,Academic Seminar 2,Academic Event,2027-02-19,14:00,Room 107,10,Business Leaders Association,2,Economics,Prof. Garcia
+3,Academic Seminar 3,Academic Event,2027-05-14,09:00,Room 103,10,Biology Society,1.75,Chemistry,Dr. Kim
+4,Academic Seminar 4,Academic Event,2027-05-07,13:00,Room 203,10,Mathematics Association,1.5,Mathematics,Dr. Kim
+5,Academic Seminar 5,Academic Event,2027-02-20,15:00,Room 102,10,Psychology Network,2,Biology,Dr. Patel
+6,Academic Seminar 6,Academic Event,2027-05-23,11:00,Room 106,10,Engineering Guild,0.25,Economics,Prof. Johnson
+7,Academic Seminar 7,Academic Event,2027-03-21,15:00,Room 102,30,Economics Forum,1,Physics,Prof. Johnson
+8,Academic Seminar 8,Academic Event,2027-02-26,14:00,Room 210,20,Physics Club,1.5,Computer Science,Prof. Chen
+9,Academic Seminar 9,Academic Event,2027-02-27,13:00,Room 109,30,Chemistry Alliance,2,Psychology,Prof. Chen
+10,Academic Seminar 10,Academic Event,2027-04-03,13:00,Room 208,10,English Literature Society,1.5,Engineering,Prof. Garcia
+11,Career Fair Session 1,Career Event,2027-04-07,10:00,Room 109,20,Computer Science Club,0.25,Intel,Taylor Smith
+12,Career Fair Session 2,Career Event,2027-04-13,14:00,Room 110,20,Business Leaders Association,1.75,Intel,Morgan Clark
+13,Career Fair Session 3,Career Event,2027-04-03,09:00,Room 200,20,Biology Society,1.25,Cisco,Jordan Davis
+14,Career Fair Session 4,Career Event,2027-04-04,16:00,Room 102,30,Mathematics Association,1.5,Google,Jordan Davis
+15,Career Fair Session 5,Career Event,2027-05-05,15:00,Room 105,20,Psychology Network,1.75,Cisco,Alex Brown
+16,Career Fair Session 6,Career Event,2027-02-28,15:00,Room 206,10,Engineering Guild,0.75,Intel,Morgan Clark
+17,Career Fair Session 7,Career Event,2027-02-08,11:00,Room 210,20,Economics Forum,0.5,Intel,Jordan Davis
+18,Career Fair Session 8,Career Event,2027-03-07,10:00,Room 104,10,Physics Club,0.5,Intel,Taylor Smith
+19,Career Fair Session 9,Career Event,2027-05-13,14:00,Room 106,30,Chemistry Alliance,1,Intel,Alex Brown
+20,Career Fair Session 10,Career Event,2027-02-04,11:00,Room 108,10,English Literature Society,1.75,Cisco,Taylor Smith
+21,Club Activity 1,Club Event,2027-05-12,14:00,Room 204,10,Computer Science Club,1,Photography Club
+22,Club Activity 2,Club Event,2027-02-04,11:00,Room 203,30,Business Leaders Association,1.75,Robotics Club
+23,Club Activity 3,Club Event,2027-02-21,10:00,Room 107,10,Biology Society,0.75,Robotics Club
+24,Club Activity 4,Club Event,2027-05-28,13:00,Room 206,20,Mathematics Association,1.75,Debate Club
+25,Club Activity 5,Club Event,2027-03-16,09:00,Room 201,30,Psychology Network,1,Chess Club
+26,Club Activity 6,Club Event,2027-03-22,11:00,Room 205,20,Engineering Guild,1.25,Photography Club
+27,Club Activity 7,Club Event,2027-05-02,10:00,Room 209,20,Economics Forum,2,Photography Club
+28,Club Activity 8,Club Event,2027-02-08,16:00,Room 208,30,Physics Club,2,Gaming Club
+29,Club Activity 9,Club Event,2027-04-20,13:00,Room 108,10,Chemistry Alliance,0.25,Debate Club
+30,Club Activity 10,Club Event,2027-04-23,16:00,Room 207,30,English Literature Society,1.25,Chess Club
+31,Social Gathering 1,Social Event,2027-04-22,10:00,Room 107,20,Computer Science Club,0.75,1
+32,Social Gathering 2,Social Event,2027-05-04,09:00,Room 210,10,Business Leaders Association,2,0
+33,Social Gathering 3,Social Event,2027-03-26,10:00,Room 202,10,Biology Society,1.75,0
+34,Social Gathering 4,Social Event,2027-05-10,15:00,Room 106,10,Mathematics Association,0.5,1
+35,Social Gathering 5,Social Event,2027-04-03,15:00,Room 104,10,Psychology Network,1.25,0
+36,Social Gathering 6,Social Event,2027-02-22,09:00,Room 203,10,Engineering Guild,0.5,1
+37,Social Gathering 7,Social Event,2027-04-04,09:00,Room 108,10,Economics Forum,0.75,0
+38,Social Gathering 8,Social Event,2027-05-27,13:00,Room 107,10,Physics Club,0.5,1
+39,Social Gathering 9,Social Event,2027-06-01,11:00,Room 104,20,Chemistry Alliance,1,1
+40,Social Gathering 10,Social Event,2027-03-20,10:00,Room 204,30,English Literature Society,0.25,0
