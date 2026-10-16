@@ -3,9 +3,6 @@
 
 using namespace std;
 
-int getSelection();
-void processSelection(int selection, System& system);
-
 int main()
 {
     System system;

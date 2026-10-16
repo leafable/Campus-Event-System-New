@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include <string>
 #include <vector>
 #include "Organizer.h"
@@ -10,7 +11,7 @@ private:
     static int numOrganizers;
 public:
     OrganizerManagement();
-    void addOrganizer(const string& name, const int organizerId, const string& email, const string& department);
+    void addOrganizer(const string& name, int organizerId, const string& email, const string& department);
     int findByName(const string& name) const;
     void displayOrganizer(const string& name) const;
     void displayAllOrganizers() const;

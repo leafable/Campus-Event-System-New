@@ -1,6 +1,4 @@
-#ifndef REGISTRATION_H
-#define REGISTRATION_H
-
+#pragma once
 #include <string>
 
 class Registration
@@ -27,5 +25,3 @@ public:
 
     void setStatus(bool status);
 };
-
-#endif
