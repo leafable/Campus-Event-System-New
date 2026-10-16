@@ -169,7 +169,13 @@ void FileManager::readEvents(EventSystem& es) {
         else if (description == "Social Event") {
             string tempBool;
             getline(ss, tempBool, ',');
-            bool fancy = stoi(tempBool); //converts string to integer then boolean
+            bool fancy;
+            try {
+                fancy = stoi(tempBool); //converts string to integer then boolean
+            }
+            catch (const exception &e) {
+                cerr << "Error reading numerical values. Skipped line: " << i << endl;
+            }
 
             //creates Social Event object and stores it in an event unique ptr then adds to EventSystem
             std::unique_ptr<Event> my_event = std::make_unique<SocialEvent>(id, name, description, date, start, location,
@@ -218,7 +224,7 @@ void FileManager::writeEvents(EventSystem& es) {
             else if (e->getEventDescription() == "Social Event")
             {
                 auto* ePtr = dynamic_cast<SocialEvent*>(e.get());
-                events << "," << ePtr->getIfFancy() << '\n';
+                events << "," << ePtr->getEventLength() << "," << ePtr->getIfFancy() << '\n';
             }
         }
     }

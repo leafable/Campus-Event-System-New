@@ -9,5 +9,7 @@ int main()
 
     system.runSystem();
 
+    system.closeSystem();
+
     return 0;
 }

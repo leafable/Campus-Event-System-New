@@ -17,4 +17,5 @@ public:
     void displayAllOrganizers() const;
     int getNumOrganizers() const;
     const vector<Organizer>* getOrganizersPointer() const;
+    
 };

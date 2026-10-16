@@ -18,8 +18,10 @@ private:
     FileManager filemanager = FileManager(students, events, organizers, registrations);
     int getSelection();
     void processSelection(int selection);
+
 public:
     System();
     ~System();
     void runSystem();
+    void closeSystem();
 };
