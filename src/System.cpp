@@ -4,7 +4,6 @@ System::System() {
 }
 
 System::~System() {
-    filemanager.saveData(students, events, organizers, registrations);
 }
 
 int System::getSelection()
@@ -275,4 +274,8 @@ void System::runSystem() {
     }
 
     while (selection != 0);
+}
+
+void System::closeSystem() {
+    filemanager.saveData(students, events, organizers, registrations);
 }

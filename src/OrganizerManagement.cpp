@@ -7,8 +7,13 @@ OrganizerManagement::OrganizerManagement()
 }
 void OrganizerManagement::addOrganizer(const string& name, const int organizerId, const string& email, const string& department)
 {
-    organizer.push_back(Organizer(name, organizerId, email, department));
-    numOrganizers++;
+    if (findByName(name) == -1) {
+        organizer.push_back(Organizer(name, organizerId, email, department));
+        numOrganizers++;
+    }
+    else {
+        cout << "Organizer already exists." << endl;
+    }
 }
 int OrganizerManagement::findByName(const string& name) const
 {
