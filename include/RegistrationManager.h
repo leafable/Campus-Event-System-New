@@ -1,6 +1,4 @@
-#ifndef REGISTRATIONMANAGER_H
-#define REGISTRATIONMANAGER_H
-
+#pragma once
 #include <vector>
 #include "Registration.h"
 
@@ -43,5 +41,3 @@ public:
     // Used by FileManager when saving (includes cancelled registrations)
     const std::vector<Registration>& getAllRegistrations() const;
 };
-
-#endif

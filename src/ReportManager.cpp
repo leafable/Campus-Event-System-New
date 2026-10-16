@@ -59,18 +59,30 @@ void ReportManager::showMostPopularEvent(
     }
 
     int highest = -1;
-    string popularEvent;
 
     for (const auto& event : events) {
         int count = registrations.countForEvent(event->getEventId());
 
         if (count > highest) {
             highest = count;
-            popularEvent = event->getEventName();
         }
     }
 
-    cout << "\nMost Popular Event: " << popularEvent
-         << " (" << highest << " registrations)" << endl;
+    vector<string> popularEvents;
+
+    for (const auto& event : events) {
+        int count = registrations.countForEvent(event->getEventId());
+
+        if (count == highest) {
+            popularEvents.push_back(event->getEventName());
+        }
+    }
+
+    if (!popularEvents.empty()) {
+        cout << "Events found: " << popularEvents.size() << endl;
+        for (auto& event : popularEvents) {
+            cout << "\t" << event << endl;
+        }
+    }
 }
 

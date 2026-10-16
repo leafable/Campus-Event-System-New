@@ -1,6 +1,7 @@
 #pragma once
-#include "Student.h"
+#include <iostream>
 #include <vector>
+#include "Student.h"
 
 class StudentManagement {
 private:
@@ -10,13 +11,13 @@ private:
 public:
     StudentManagement();
     void addStudent(const Student& student);
-    void addStudent(const int id, const string& name, const string& email, const string& major);
-    int findById(const int id) const;
+    void addStudent(int id, const string& name, const string& email, const string& major);
+    int findById(int id) const;
     int findByName(const string& name) const;
-    void displayStudent(const int id) const;
+    void displayStudent(int id) const;
     void displayStudent(const string& name);
     void displayAllStudents() const;
-    bool isDuplicateId(const int id) const;
+    bool isDuplicateId(int id) const;
     static int getNumStudents();
     const vector<Student>& getStudentVector();
 };

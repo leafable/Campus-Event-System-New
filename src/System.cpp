@@ -132,16 +132,14 @@ void System::processSelection(int selection)
             break;
         }
         case 3: {
-
+            break;
         }
-        break;
-
-        case 4:
+        case 4: {
             break;
-
-        case 5:
+        }
+        case 5: {
             break;
-
+        }
         case 6: {
             int studentID, eventID;
             cout << "Enter student ID: ";
@@ -228,8 +226,8 @@ void System::processSelection(int selection)
 
             cout << endl << "Enter selection: ";
 
-            int reportChoice;
-            if (!(cin >> reportChoice)) {
+            int c11selection;
+            if (!(cin >> c11selection)) {
                 cin.clear();
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cerr << "Error: Invalid report selection." << endl;
@@ -238,7 +236,7 @@ void System::processSelection(int selection)
 
             const auto& eventList = *events.getEventsPointer();
 
-            switch (reportChoice) {
+            switch (c11selection) {
                 case 1:
                     reports.showAvailableEvents(eventList, registrations);
                     break;
@@ -260,8 +258,11 @@ void System::processSelection(int selection)
             }
             break;
         }
-        case 0:
+        case 0: {
+            cout << "Exiting program..." << endl;
             exit(0);
+            break;
+        }
     }
 }
 
