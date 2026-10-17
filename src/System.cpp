@@ -9,7 +9,7 @@ System::~System() {
 int System::getSelection()
 {
     int selection;
-    cout << endl << "Campus Event Management System" << endl;
+    cout << "Campus Event Management System" << endl;
     cout << "1). Add Student" << endl;
     cout << "2). View Students" << endl;
     cout << "3). Create Event" << endl;
@@ -62,10 +62,12 @@ void System::processSelection(int selection)
             }
             cout << endl << "Major: ";
             cin >> c1majorselection;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             while (c1majorselection < 1 || c1majorselection > numMajors) {
                 cout << "Invalid selection." << endl;
                 cout << "Major: ";
                 cin >> c1majorselection;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
             c1major = majorList[c1majorselection - 1];
 
@@ -95,10 +97,13 @@ void System::processSelection(int selection)
 
             cout << endl << "Enter selection: ";
             cin >> c2selection;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
             while (c2selection < 1 || c2selection > 2) {
                 cout << "Invalid selection." << endl;
                 cout << endl << "Enter selection: ";
+                cin >> c2selection;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
             }
 
             if (c2selection == 1) {
@@ -107,26 +112,32 @@ void System::processSelection(int selection)
 
                 cout << endl << "Enter selection: ";
                 cin >> c2selection;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
                 while (c2selection < 1 || c2selection > 2) {
                     cout << "Invalid selection." << endl;
                     cout << endl << "Enter selection: ";
+                    cin >> c2selection;
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 }
 
                 if (c2selection == 1) {
-                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     cout << "Student name: ";
                     getline(cin, c2name);
                     students.displayStudent(c2name);
+                    cout << endl;
                 }
                 else if (c2selection == 2) {
-                    cout << endl << "Student ID: ";
+                    cout << "Student ID: ";
                     cin >> c2id;
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     students.displayStudent(c2id);
+                    cout << endl;
                 }
             }
             else if (c2selection == 2) {
                 students.displayAllStudents();
+                cout << endl;
             }
             break;
         }
@@ -143,8 +154,10 @@ void System::processSelection(int selection)
             int studentID, eventID;
             cout << "Enter student ID: ";
             cin >> studentID;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Enter event ID: ";
             cin >> eventID;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
             // addRegistration needs the event's max capacity, so look the event up first
             int maxCapacity = -1;
@@ -165,6 +178,7 @@ void System::processSelection(int selection)
             string date;
             cout << "Enter registration date (YYYY-MM-DD): ";
             cin >> date;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
 
             if (registrations.addRegistration(Registration(studentID, eventID, date, true), maxCapacity))
                 cout << "Student registered." << endl;
@@ -178,8 +192,10 @@ void System::processSelection(int selection)
             int studentID, eventID;
             cout << "Enter student ID: ";
             cin >> studentID;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << "Enter event ID: ";
             cin >> eventID;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << endl;
 
             if (registrations.cancelRegistration(studentID, eventID))
@@ -192,6 +208,7 @@ void System::processSelection(int selection)
             int studentID;
             cout << "Enter student ID: ";
             cin >> studentID;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << endl;
 
             vector<int> eventIDs = registrations.getEventIDsForStudent(studentID);
@@ -205,6 +222,7 @@ void System::processSelection(int selection)
             int eventID;
             cout << "Enter event ID: ";
             cin >> eventID;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
             cout << endl;
 
             vector<int> studentIDs = registrations.getStudentIDsForEvent(eventID);
@@ -215,21 +233,104 @@ void System::processSelection(int selection)
             break;
         }
         case 10: {
-            
+            int c10selection{};
+            string c10name{};
+            int c10id{};
+            char c10association{};
+
+            organizers.updateOrganizers(events);
+
+            cout << "1). View specific organizer" << endl;
+            cout << "2). View all organizers" << endl;
+            cout << endl << "Enter selection: ";
+            cin >> c10selection;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            while (c10selection < 1 || c10selection > 2) {
+                cout << "Invalid selection." << endl;
+                cout << endl << "Enter selection: ";
+                cin >> c10selection;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+
+            if (c10selection == 1) {
+                cout << "1). Find by organization name" << endl;
+                cout << "2). Find by organization ID" << endl;
+                cout << endl << "Enter selection: ";
+                cin >> c10selection;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+                while (c10selection < 1 || c10selection > 2) {
+                    cout << "Invalid selection." << endl;
+                    cout << endl << "Enter selection: ";
+                    cin >> c10selection;
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+
+                if (c10selection == 1) {
+                    cout << "Organization name: ";
+                    getline(cin, c10name);
+                    organizers.displayOrganizer(c10name);
+                }
+                else if (c10selection == 2) {
+                    cout << "Organization ID: ";
+                    cin >> c10id;
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    c10name = organizers.findNameById(c10id);
+                    organizers.displayOrganizer(c10id);
+                }
+                cout << endl << "Display associated events? (Y/N): ";
+                cin >> c10association;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                c10association = toupper(c10association);
+
+                while (c10association != 'Y' && c10association != 'N') {
+                    cout << "Invalid selection." << endl;
+                    cout << "Display associated events? (Y/N): ";
+                    cin >> c10association;
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    c10association = toupper(c10association);
+                }
+
+                if (c10association == 'Y') {
+                    organizers.viewAssociatedEvents(c10name, events);
+                }
+            }
+            else if (c10selection == 2) {
+                organizers.displayAllOrganizers();
+
+                cout << "Display associated events? (Y/N): ";
+                cin >> c10association;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                c10association = toupper(c10association);
+
+                while (c10association != 'Y' && c10association != 'N') {
+                    cout << "Invalid selection." << endl;
+                    cout << "Display associated events? (Y/N): ";
+                    cin >> c10association;
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                    c10association = toupper(c10association);
+                }
+
+                if (c10association == toupper('Y')) {
+                    cout << "Organization name: ";
+                    getline(cin, c10name);
+                    organizers.viewAssociatedEvents(c10name, events);
+                }
+            }
             break;
         }
         case 11: {
-            cout << "1). Available Events" << endl;
-            cout << "2). Full Events" << endl;
-            cout << "3). Registration Counts" << endl;
-            cout << "4). Most Popular Event" << endl;
+            cout << "1). View available events" << endl;
+            cout << "2). View full events" << endl;
+            cout << "3). View registration statistics" << endl;
+            cout << "4). View most popular event(s)" << endl;
 
             cout << endl << "Enter selection: ";
 
             int c11selection;
             if (!(cin >> c11selection)) {
                 cin.clear();
-                cin.ignore(numeric_limits<streamsize>::max(), '\n');
                 cerr << "Error: Invalid report selection." << endl;
                 break;
             }
@@ -260,9 +361,12 @@ void System::processSelection(int selection)
         }
         case 0: {
             cout << "Exiting program..." << endl;
-            exit(0);
             break;
         }
+    }
+    if (selection != 0) {
+        cout << "Press enter to continue...";
+        cin.get();
     }
 }
 
@@ -273,7 +377,6 @@ void System::runSystem() {
         selection = getSelection();
         processSelection(selection);
     }
-
     while (selection != 0);
 }
 

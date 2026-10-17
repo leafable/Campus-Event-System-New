@@ -4,8 +4,8 @@ int OrganizerManagement::numOrganizers = 0;
 
 OrganizerManagement::OrganizerManagement(const EventSystem& events) {
     for (const auto& event : *events.getEventsPointer()) {
-        int index = findByName(event->getOrganizer());
-        if (index != -1) {
+        int index = findIndexByName(event->getOrganizer());
+        if (index != -1 && events.getEventsPointer()->size() != 0) {
             associatedEventIds.resize(events.getEventsPointer()->size());
             associatedEventIds[index].push_back(event->getEventId());
         }
@@ -13,7 +13,7 @@ OrganizerManagement::OrganizerManagement(const EventSystem& events) {
 }
 void OrganizerManagement::addOrganizer(const string& name, const int organizerId, const string& email, const string& department)
 {
-    if (findByName(name) == -1) {
+    if (findIndexByName(name) == -1) {
         organizers.push_back(Organizer(name, organizerId, email, department));
         numOrganizers++;
     }
@@ -21,7 +21,7 @@ void OrganizerManagement::addOrganizer(const string& name, const int organizerId
         cout << "Organizer already exists." << endl;
     }
 }
-int OrganizerManagement::findByName(const string& name) const
+int OrganizerManagement::findIndexByName(const string& name) const
 {
     for (int i = 0; i < organizers.size(); i++) {
         if (organizers[i].getName() == name) {
@@ -30,9 +30,40 @@ int OrganizerManagement::findByName(const string& name) const
     }
     return -1;
 }
+int OrganizerManagement::findIndexById(int id) const
+{
+    for (int i = 0; i < organizers.size(); i++) {
+        if (organizers[i].getOrganizerId() == id) {
+            return i;
+        }
+    }
+    return -1;
+}
+string OrganizerManagement::findNameById(int id) const {
+    for (const auto& organizer : organizers) {
+        if (organizer.getOrganizerId() == id) {
+            return organizer.getName();
+        }
+    }
+}
 void OrganizerManagement::displayOrganizer(const string& name) const
 {
-    int index = findByName(name);
+    int index = findIndexByName(name);
+    if (index != -1) {
+        cout << "Name: " << organizers[index].getName() << endl;
+        cout << "ID: " << organizers[index].getOrganizerId() << endl;
+
+        // If the organizer does not have an email or department, display N/A
+        cout << "Email: " << (organizers[index].getEmail() == "" ? "N/A" : organizers[index].getEmail()) << endl;
+        cout << "Department: " << (organizers[index].getDepartment() == "" ? "N/A" : organizers[index].getDepartment()) << endl;
+    }
+    else {
+        cout << "Organizer not found." << endl;
+    }
+}
+void OrganizerManagement::displayOrganizer(int id) const
+{
+    int index = findIndexById(id);
     if (index != -1) {
         cout << "Name: " << organizers[index].getName() << endl;
         cout << "ID: " << organizers[index].getOrganizerId() << endl;
@@ -64,7 +95,7 @@ void OrganizerManagement::updateOrganizers(const EventSystem& events) {
     for (const auto& event : *events.getEventsPointer()) {
 
         // Adds the organizer to the vector if it's not already in the vector
-        if (findByName(event->getOrganizer()) == -1) {
+        if (findIndexByName(event->getOrganizer()) == -1) {
             if (!organizers.empty()) {
                 addOrganizer(event->getOrganizer(), organizers.back().getOrganizerId() + 1, "", "");
             }
@@ -75,10 +106,16 @@ void OrganizerManagement::updateOrganizers(const EventSystem& events) {
     }
 }
 void OrganizerManagement::viewAssociatedEvents(const string& name, const EventSystem& events) const {
-    int index = findByName(name);
+    int numAssociations{};
 
-    // Passes the event id from the 2D vector into displayEvent()
-    for (const auto& event : associatedEventIds[index]) {
-        events.displayEvent(event);
+    for (const auto& event : *events.getEventsPointer()) {
+        if (event->getOrganizer() == name) {
+            event->printDetails();
+            cout << endl;
+            numAssociations++;
+        }
+    }
+    if (numAssociations == 0) {
+        cout << "No associated events found." << endl;
     }
 }

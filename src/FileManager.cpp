@@ -262,8 +262,6 @@ void FileManager::readOrganizers(OrganizerManagement& org) {
 
     string line;
 
-    getline(organizer, line);
-
     //read all the lines in the file
     while (getline(organizer, line)) {
         ++i; //we have read the first line
