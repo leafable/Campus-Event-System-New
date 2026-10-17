@@ -90,3 +90,35 @@ void Event::printDetails() const {
     cout << "Capacity: " << getEventMaxCapacity() << endl;
     cout << "Organizer: " << getOrganizer() << endl;
 }
+
+string Event::getCSV() {
+    stringstream ss;
+    ss << getEventId() << "," <<  getEventName() << "," << getEventDescription() << ","
+    << getEventDate() << "," << getEventTime() << "," <<  getEventLocation() << ","
+    << getEventMaxCapacity() << "," << getOrganizer();
+    return ss.str();
+}
+
+// string Event::getDepartment() const {
+//     return "";
+// }
+//
+// string Event::getSpeaker() const {
+//     return "";
+// }
+//
+// string Event::getCompanyName() const {
+//     return "";
+// }
+//
+// string Event::getRecruiterName() const {
+//     return "";
+// }
+//
+// string Event::getClub() const {
+//     return "";
+// }
+//
+// bool Event::getIfFancy() const {
+//     return 0;
+// }

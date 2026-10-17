@@ -1,6 +1,7 @@
 #pragma once
 #include <string>
 #include <iostream>
+#include <sstream>
 
 using namespace std;
 
@@ -18,6 +19,7 @@ class Event{
     string organizer;  //stores the name of the event organizer
     public:
     Event(int id, string name, string description, string date, string time,  string location, int maxCap, string organizer, string eventLength);
+    virtual ~Event() = default;
     string getEventName() const;  //Returns the events name
     virtual string getEventDescription() const;  //Returns the events description
     string getEventDate() const;  //Returns the events date in the form
@@ -46,5 +48,20 @@ class Event{
     void setLocation(string newLocation);  //changes the location of the
                                            //event
     int getEventId() const;
+
     virtual void printDetails() const;
+
+    virtual string getCSV();
+
+    // virtual string getDepartment() const;
+    //
+    // virtual string getSpeaker() const;
+    //
+    // virtual string getCompanyName() const;
+    //
+    // virtual string getRecruiterName() const;
+    //
+    // virtual string getClub() const;
+    //
+    // virtual bool getIfFancy() const;
 };

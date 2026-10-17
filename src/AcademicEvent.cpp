@@ -25,5 +25,10 @@ void AcademicEvent::printDetails() const {
     Event::printDetails();
     cout << "Department: " << getDepartment() << endl;
     cout << "Speaker: " << getSpeaker() << endl;
+}
 
+string AcademicEvent::getCSV() {
+    stringstream ss;
+    ss << Event::getCSV() << "," << getDepartment() << "," << getSpeaker() << endl;
+    return ss.str();
 }

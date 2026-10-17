@@ -15,7 +15,6 @@
 #include "../include/StudentManagement.h"
 #include "../include/OrganizerManagement.h"
 
-
 using namespace std;
 
 FileManager::FileManager(StudentManagement& stm, EventSystem& evs, OrganizerManagement& orgs, RegistrationManager& regm) {
@@ -29,6 +28,10 @@ void FileManager::readStudents(StudentManagement& sm) {
 
     // open the students.txt file
     std::ifstream enrolled("data/students.txt");
+
+    if (!enrolled.is_open()) {
+        cerr << "Error: Unable to open students.txt" << endl;
+    }
 
     //initialize counter variable to track line read
     int i = 0;
@@ -77,6 +80,10 @@ void FileManager::writeStudents(StudentManagement& sm) {
 
     ofstream enrolled("data/students.txt");
 
+    if (!enrolled.is_open()) {
+        cerr << "Error: Unable to open students.txt" << endl;
+    }
+
     // std::vector<Student>* stuPtr = sm.getStudentsPointer();
     //
     // if (stuPtr != nullptr) {
@@ -95,6 +102,10 @@ void FileManager::writeStudents(StudentManagement& sm) {
 void FileManager::readEvents(EventSystem& es) {
     // open the events.txt file
     std::ifstream eventFile("data/events.txt");
+
+    if (!eventFile.is_open()) {
+        cerr << "Error: Unable to open events.txt" << endl;
+    }
 
     //initialize counter variable to track line read
     int i = 0;
@@ -196,36 +207,41 @@ void FileManager::readEvents(EventSystem& es) {
 void FileManager::writeEvents(EventSystem& es) {
     ofstream events("data/events.txt");
 
+    if (!events.is_open()) {
+        cerr << "Error: Unable to open events.txt" << endl;
+    }
+
     const vector<unique_ptr<Event>> *eventsPtr = es.getEventsPointer();
 
     if (eventsPtr != nullptr) {
         for (const unique_ptr<Event>& e : *eventsPtr) {
 
-            events <<  e->getEventId() << "," <<  e->getEventName() << "," << e->getEventDescription() << ","
-            << e->getEventDate() << "," << e->getEventTime() << "," <<  e->getEventLocation() << ","
-            << e->getEventMaxCapacity() << "," << e->getOrganizer();
-
-            // Determine type of event and write event specific data
-            if (e->getEventDescription() == "Academic Event")
-            {
-                auto* ePtr = dynamic_cast<AcademicEvent*>(e.get());
-                events << "," << ePtr->getDepartment() << "," << ePtr->getSpeaker() << endl;
-            }
-            else if (e->getEventDescription() == "Career Event")
-            {
-                auto* ePtr = dynamic_cast<CareerEvent*>(e.get());
-                events << "," << ePtr->getCompanyName() << "," << ePtr->getRecruiterName() << endl;
-            }
-            else if (e->getEventDescription() == "Club Event")
-            {
-                auto* ePtr = dynamic_cast<ClubEvent*>(e.get());
-                events << "," << ePtr->getClub() << '\n';
-            }
-            else if (e->getEventDescription() == "Social Event")
-            {
-                auto* ePtr = dynamic_cast<SocialEvent*>(e.get());
-                events << "," << ePtr->getEventLength() << "," << ePtr->getIfFancy() << '\n';
-            }
+            // events <<  e->getEventId() << "," <<  e->getEventName() << "," << e->getEventDescription() << ","
+            // << e->getEventDate() << "," << e->getEventTime() << "," <<  e->getEventLocation() << ","
+            // << e->getEventMaxCapacity() << "," << e->getOrganizer();
+            //
+            // // Determine type of event and write event specific data
+            // if (e->getEventDescription() == "Academic Event")
+            // {
+            //     // auto* ePtr = dynamic_cast<AcademicEvent*>(e.get());
+            //     events << "," << e->getDepartment() << "," << e->getSpeaker() << endl;
+            // }
+            // else if (e->getEventDescription() == "Career Event")
+            // {
+            //     // auto* ePtr = dynamic_cast<CareerEvent*>(e.get());
+            //     events << "," << e->getCompanyName() << "," << e->getRecruiterName() << endl;
+            // }
+            // else if (e->getEventDescription() == "Club Event")
+            // {
+            //     // auto* ePtr = dynamic_cast<ClubEvent*>(e.get());
+            //     events << "," << e->getClub() << '\n';
+            // }
+            // else if (e->getEventDescription() == "Social Event")
+            // {
+            //     // auto* ePtr = dynamic_cast<SocialEvent*>(e.get());
+            //     events << "," << e->getEventLength() << "," << e->getIfFancy() << '\n';
+            // }
+            events << e->getCSV();
         }
     }
 
@@ -236,6 +252,10 @@ void FileManager::readOrganizers(OrganizerManagement& org) {
 
     // open the students.txt file
     std::ifstream organizer("data/organizers.txt");
+
+    if (!organizer.is_open()) {
+        cerr << "Error: Unable to open organizers.txt" << endl;
+    }
 
     //initialize counter variable to track line read
     int i = 0;
@@ -289,6 +309,10 @@ void FileManager::writeOrganizers(OrganizerManagement& org) {
     //open txt file to save organizers
     ofstream orgFile("data/organizers.txt");
 
+    if (!orgFile.is_open()) {
+        cerr << "Error: Unable to open organizers.txt" << endl;
+    }
+
     //get a pointer to the vector holding the organizers
     const vector<Organizer> *orgPtr = org.getOrganizersPointer();
 
@@ -309,6 +333,10 @@ void FileManager::readRegistrations(RegistrationManager& rm) {
 
     // open the registrations.txt file
     std::ifstream registration("data/registrations.txt");
+
+    if (!registration.is_open()) {
+        cerr << "Error: Unable to open registrations.txt" << endl;
+    }
 
     //initialize counter variable to track line read
     int i = 0;
@@ -362,6 +390,10 @@ void FileManager::writeRegistrations(RegistrationManager& rm) {
 
     //open txt file to save registrations
     ofstream regFile("data/registrations.txt");
+
+    if (!regFile.is_open()) {
+        cerr << "Error: Unable to open registrations.txt" << endl;
+    }
 
     //get a pointer to the vector holding the organizers
     // std::vector<Registration>* regPtr = rm.getOrganizerPointer();

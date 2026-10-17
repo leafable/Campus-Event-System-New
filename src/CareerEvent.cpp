@@ -26,3 +26,9 @@ void CareerEvent::printDetails() const {
     cout << "Company: " << getCompanyName() << endl;
     cout << "Recruiter: " << getRecruiterName() << endl;
 }
+
+string CareerEvent::getCSV() {
+    stringstream ss;
+    ss << Event::getCSV() << "," << getCompanyName() << "," << getRecruiterName() << endl;
+    return ss.str();
+}

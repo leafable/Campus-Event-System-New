@@ -16,3 +16,9 @@ void SocialEvent::printDetails() const {
     Event::printDetails();
     cout << "Fancy: " << (getIfFancy() ? "True" : "False") << endl;
 }
+
+string SocialEvent::getCSV() {
+    stringstream ss;
+    ss << Event::getCSV() << "," << getIfFancy() << endl;
+    return ss.str();
+}
