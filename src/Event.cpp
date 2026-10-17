@@ -1,6 +1,6 @@
 #include <Event.h>
 
-Event::Event(int id, string name, string description, string date, string time,  string location, int maxCap, string organizer, string eventLength){
+Event::Event(int id, string name, string description, string date, string time,  string location, int maxCap, string organizer, string eventLength) {
     this->id = id;
     this->eventName = name;
     this->eventDescription = description;
@@ -95,7 +95,7 @@ string Event::getCSV() {
     stringstream ss;
     ss << getEventId() << "," <<  getEventName() << "," << getEventDescription() << ","
     << getEventDate() << "," << getEventTime() << "," <<  getEventLocation() << ","
-    << getEventMaxCapacity() << "," << getOrganizer();
+    << getEventMaxCapacity() << "," << getOrganizer() << "," << getEventLength();
     return ss.str();
 }
 

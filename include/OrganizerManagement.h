@@ -14,8 +14,11 @@ private:
 public:
     OrganizerManagement(const EventSystem& events);
     void addOrganizer(const string& name, int organizerId, const string& email, const string& department);
-    int findByName(const string& name) const;
+    int findIndexByName(const string& name) const;
+    int findIndexById(int id) const;
+    string findNameById(int id) const;
     void displayOrganizer(const string& name) const;
+    void displayOrganizer(int id) const;
     void displayAllOrganizers() const;
     int getNumOrganizers() const;
     const vector<Organizer>* getOrganizersPointer() const;
