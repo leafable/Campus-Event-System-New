@@ -16,3 +16,9 @@ void ClubEvent::printDetails() const {
     Event::printDetails();
     cout << "Club: " << getClub() << endl;
 }
+
+string ClubEvent::getCSV() {
+    stringstream ss;
+    ss << Event::getCSV() << "," << getClub() << endl;
+    return ss.str();
+}

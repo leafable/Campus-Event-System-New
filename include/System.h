@@ -11,8 +11,8 @@ class System
 {
 private:
     StudentManagement students;
-    OrganizerManagement organizers;
     EventSystem events;
+    OrganizerManagement organizers = OrganizerManagement(events);
     RegistrationManager registrations;
     ReportManager reports;
     FileManager filemanager = FileManager(students, events, organizers, registrations);
