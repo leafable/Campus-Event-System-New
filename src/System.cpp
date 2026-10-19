@@ -71,13 +71,21 @@ void System::processSelection(int selection)
             }
             c1major = majorList[c1majorselection - 1];
 
-            const auto& studentsVector = students.getStudentVector();
-            if (!studentsVector.empty()) {
-                c1id = studentsVector.back().getId() + 1;
+            int highestId = students.getStudentVector().at(0).getId();
+            for (const auto& student : students.getStudentVector()) {
+                if (highestId < student.getId()) {
+                    highestId = student.getId();
+                }
             }
-            else {
-                c1id = 100;
-            }
+            c1id = highestId + 1;
+
+            // const auto& studentsVector = students.getStudentVector();
+            // if (!studentsVector.empty()) {
+            //     c1id = studentsVector.back().getId() + 1;
+            // }
+            // else {
+            //     c1id = 100;
+            // }
 
             if (!students.isDuplicateId(c1id)) {
                 students.addStudent(c1id, c1name, c1email, c1major);
@@ -142,9 +150,135 @@ void System::processSelection(int selection)
             break;
         }
         case 3: {
+            string c3name{};
+            string c3description{};
+            string c3date{};
+            int c3year{};
+            int c3month{};
+            int c3day{};
+            string c3time{};
+            int c3minute{};
+            int c3hour{};
+            string c3location{};
+            int c3capacity{};
+            string c3selection{};
+            int c3id{};
+            string c3organizer{};
+            double c3length;
+
+            int highestId = events.getEventsPointer()->at(0)->getEventId();
+            for (const auto& event : *events.getEventsPointer()) {
+                if (highestId < event->getEventId()) {
+                    highestId = event->getEventId();
+                }
+            }
+            c3id = highestId + 1;
+
+            cout << "Event name: ";
+            getline(cin, c3name);
+            cout << "Event description: ";
+            getline(cin, c3description);
+            cout << "Date of event (yyyy-mm-dd): ";
+            cin >> c3year;
+            cin.ignore();
+            cin >> c3month;
+            cin.ignore();
+            cin >> c3day;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            while (c3month > 12 || c3month < 1 || c3day < 1 || c3day > 31 || c3year > 9999 || c3year < 2000) {
+                cout << "Error: Invalid date." << endl;
+                cout << "Date of event (yyyy-mm-dd): ";
+                cin >> c3year;
+                cin.ignore();
+                cin >> c3month;
+                cin.ignore();
+                cin >> c3day;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+            c3date = to_string(c3year) + '-' + to_string(c3month) + '-' + to_string(c3day);
+
+            cout << "Time (HH:MM): ";
+            cin >> c3hour;
+            cin.ignore();
+            cin >> c3minute;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            while (c3hour > 24 || c3hour < 0 || c3minute > 59 || c3minute < 0) {
+                cout << "Error: Invalid time." << endl;
+                cout << "Time (HH:MM): ";
+                cin >> c3hour;
+                cin.ignore();
+                cin >> c3minute;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+            c3time = to_string(c3hour) + ':' + to_string(c3minute);
+
+            cout << "Location: ";
+            cin >> c3location;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            cout << "Max capacity: ";
+            cin >> c3capacity;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            while (c3capacity < 1) {
+                cout << "Error: Invalid capacity." << endl;
+                cout << "Max capacity: ";
+                cin >> c3capacity;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+
+            cout << "List of organizers" << endl;
+            int index{};
+            for (const auto& organizer : *organizers.getOrganizersPointer()) {
+                cout << ++index << "). " << organizer.getName() << endl;
+            }
+
+            cout << endl << "Select an organizer or type it in manually: ";
+            getline(cin, c3selection);
+            try {
+                c3organizer = organizers.getOrganizersPointer()->at(stoi(c3selection)).getName();
+            }
+            catch (const exception &e) {
+                c3organizer = c3selection;
+            }
+
+            cout << "Event duration (in minutes): ";
+            cin >> c3length;
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+            while (c3length < 0) {
+                cout << "Error: Invalid duration." << endl;
+                cin >> c3length;
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+
+            c3length /= 60;
+
+            unique_ptr<Event> newEvent = make_unique<Event>(c3id, c3name, c3description, c3date, c3time, c3location, c3capacity, c3organizer, to_string(c3length));
+            events.createEvent(move(newEvent));
+
             break;
         }
         case 4: {
+            int c4selection{};
+
+            cout << "1). View specific event" << endl;
+            cout << "2). View all events" << endl;
+            cout << endl << "Enter selection: ";
+            cin >> c4selection;
+
+            while (c4selection < 1 || c4selection > 2) {
+                cout << "Error: Invalid selection." << endl;
+                cout << endl << "Enter selection: ";
+                cin >> c4selection;
+            }
+
+            if (c4selection == 1) {
+                cout << "1). Find by event name" << endl;
+                cout << "2). Find by event ID" << endl;
+            }
             break;
         }
         case 5: {
