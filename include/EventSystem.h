@@ -13,9 +13,15 @@ private:
 public:
     void createEvent(unique_ptr<Event> event);
     int findEventById(int id) const; // Returns index of event
-    void displayEvent(int id) const;
-    void displayEvent(const string& name) const;
+    int findEventByDescription(const string &description) const;
+    int findEventByDate(const string &date) const;
+    int findEventByTime(const string &time) const;
+    int findEventByLocation(const string &location) const;
+    int findEventByCapacity(int capacity) const;
+    int findEventByOrganization(const string &organization) const;
+    int findEventByDuration(const string &duration) const;
+    int findEventByName(const string& name) const;
+    void displayEvent(int index) const;
     void displayAllEvents() const;
-    int findEventByName(const string& name) const; // Returns index of event
     const vector<unique_ptr<Event>>* getEventsPointer() const;
 };

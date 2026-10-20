@@ -18,6 +18,7 @@ public:
     void displayStudent(const string& name);
     void displayAllStudents() const;
     bool isDuplicateId(int id) const;
+    bool studentExists(const string& name) const;
     static int getNumStudents();
     const vector<Student>& getStudentVector();
 };

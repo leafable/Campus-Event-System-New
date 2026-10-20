@@ -52,6 +52,13 @@ bool StudentManagement::isDuplicateId(const int id) const {
     return 1;
 }
 
+bool StudentManagement::studentExists(const string& name) const {
+    if (findByName(name) == -1) {
+        return 0;
+    }
+    return 1;
+}
+
 void StudentManagement::displayStudent(const int id) const {
     int index = findById(id);
     if (index != -1) {
